@@ -1,0 +1,20 @@
+# Core dependencies
+numpy>=1.21.0
+torch>=2.0.0
+transformers>=4.30.0
+
+# Computer vision
+opencv-python>=4.7.0
+pillow>=9.0.0
+
+# Metrics
+lpips>=0.1.4
+clip-by-openai
+
+# Utilities
+tqdm>=4.65.0
+pyyaml>=6.0
+matplotlib>=3.7.0
+
+# Physics simulation (if applicable)
+# Add specific physics library dependencies here
