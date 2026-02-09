@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 import os
 
-GEMINI_API_KEY = "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0"
+GEMINI_API_KEY = "XXXXXX"
 
 def render_blend_file(blend_path: str, num_frames: int = 30) -> np.ndarray:
     """Render Blender file to numpy video using Blender CLI"""
