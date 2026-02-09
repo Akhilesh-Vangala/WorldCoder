@@ -29,7 +29,7 @@ compute_parameter_accuracy = gen_script.compute_parameter_accuracy
 convert_to_native_types = gen_script.convert_to_native_types
 
 # Configuration
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "XXXXXX")
 VJEPA_MODEL_PATH = PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'
 DATASET_DIR = PROJECT_ROOT / 'dataset'
 RESULTS_DIR = PROJECT_ROOT / 'cvpr_results'
