@@ -15,7 +15,7 @@ import tempfile
 import os
 
 # Gemini API key
-GEMINI_API_KEY = "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0"
+GEMINI_API_KEY = #API Key
 
 def render_blend_to_video_frames(blend_file: str, num_frames: int = 30) -> np.ndarray:
     """Render Blender .blend file to video frames"""
