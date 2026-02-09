@@ -54,7 +54,7 @@ st.sidebar.header("⚙️ Configuration")
 # API Key input
 gemini_key = st.sidebar.text_input(
     "Gemini API Key",
-    value="AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0",
+    value="XXXX",
     type="default"
 )
 
