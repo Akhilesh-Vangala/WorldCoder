@@ -1,0 +1,122 @@
+{
+  "pair_id": 3,
+  "start_params": {
+    "s1_length": 2.096347076749985,
+    "ramp_length": 4.916675269312026,
+    "ramp_angle": 38.083414853870295,
+    "s3_length": 3.4823939879844543,
+    "step_height": 0.7773739023263964,
+    "s4_length": 3.9201465082027998,
+    "width": 1.5741543284262818,
+    "ball_radius": 0.16058260879853814,
+    "ball_mass": 1.801539119833308,
+    "track_tilt": 10.45528428892192,
+    "track_friction": 0.3009320074978741,
+    "ball_friction": 0.11867747779651652,
+    "restitution": 0.11050596326854178
+  },
+  "goal_params": {
+    "s1_length": 2.096347076749985,
+    "ramp_length": 4.916675269312026,
+    "ramp_angle": 38.083414853870295,
+    "s3_length": 3.4823939879844543,
+    "step_height": 0.5441617316284774,
+    "s4_length": 3.9201465082027998,
+    "width": 1.5741543284262818,
+    "ball_radius": 0.16058260879853814,
+    "ball_mass": 1.801539119833308,
+    "track_tilt": 10.45528428892192,
+    "track_friction": 0.3009320074978741,
+    "ball_friction": 0.11867747779651652,
+    "restitution": 0.11050596326854178
+  },
+  "start_physics": {
+    "ball_mass": 1.801539119833308,
+    "ball_radius": 0.16058260879853814,
+    "ball_friction": 0.11867747779651652,
+    "track_friction": 0.3009320074978741,
+    "restitution": 0.11050596326854178,
+    "ramp_angle": 38.083414853870295,
+    "track_tilt": 10.45528428892192,
+    "gravity": -9.81,
+    "initial_position": [
+      0.30000001192092896,
+      0.0,
+      0.5005826354026794
+    ],
+    "initial_velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_position": null,
+    "final_velocity": null,
+    "trajectory": [
+      {
+        "frame": 1,
+        "position": [
+          0.30000001192092896,
+          0.0,
+          0.5005826354026794
+        ],
+        "velocity": [
+          3.8083414853870297,
+          0.0,
+          -0.9810000000000001
+        ]
+      }
+    ],
+    "expected_velocity": [
+      3.8083414853870297,
+      0.0,
+      -0.9810000000000001
+    ]
+  },
+  "goal_physics": {
+    "ball_mass": 1.801539119833308,
+    "ball_radius": 0.16058260879853814,
+    "ball_friction": 0.11867747779651652,
+    "track_friction": 0.3009320074978741,
+    "restitution": 0.11050596326854178,
+    "ramp_angle": 38.083414853870295,
+    "track_tilt": 10.45528428892192,
+    "gravity": -9.81,
+    "initial_position": [
+      0.30000001192092896,
+      0.0,
+      0.5005826354026794
+    ],
+    "initial_velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_position": null,
+    "final_velocity": null,
+    "trajectory": [
+      {
+        "frame": 1,
+        "position": [
+          0.30000001192092896,
+          0.0,
+          0.5005826354026794
+        ],
+        "velocity": [
+          3.8083414853870297,
+          0.0,
+          -0.9810000000000001
+        ]
+      }
+    ],
+    "expected_velocity": [
+      3.8083414853870297,
+      0.0,
+      -0.9810000000000001
+    ]
+  },
+  "modifications": {
+    "ramp_angle_diff": 0.0,
+    "mass_diff": 0.0,
+    "friction_diff": 0.0
+  }
+}
