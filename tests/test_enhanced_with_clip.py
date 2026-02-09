@@ -13,7 +13,7 @@ from src.zero_shot_worldcoder_enhanced import EnhancedZeroShotWorldCoder
 import os
 
 # Test with one pair
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "XXXXXX")
 VJEPA_MODEL_PATH = str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar')
 
 def test_enhanced_pipeline():
