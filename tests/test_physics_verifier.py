@@ -3,10 +3,11 @@ Test Physics Verifier with real Blender code execution
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
-from zero_shot_worldcoder import PhysicsVerifier
+from src.zero_shot_worldcoder import PhysicsVerifier
 from pathlib import Path
 
 def test_verifier():

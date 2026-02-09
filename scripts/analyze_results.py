@@ -9,6 +9,9 @@ import numpy as np
 from pathlib import Path
 from typing import Dict, List
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+RESULTS_DIR = PROJECT_ROOT / 'cvpr_results'
+
 try:
     import matplotlib.pyplot as plt
     MATPLOTLIB_AVAILABLE = True
@@ -22,8 +25,6 @@ try:
 except ImportError:
     PANDAS_AVAILABLE = False
     print("⚠️  pandas not available. CSV export will be skipped.")
-
-RESULTS_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/cvpr_results')
 
 
 def load_results() -> Dict:

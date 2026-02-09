@@ -4,12 +4,16 @@ Pure zero-shot approach for 4D (space-time) scene editing in Blender - **no data
 
 ## Quick Start
 
+Run from the project root directory:
+
 ```python
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 
 coder = ZeroShotWorldCoder(max_iterations=3)
 code, scores = coder.transform(start_video, goal_video)
 ```
+
+Or: `python -c "from src.zero_shot_worldcoder import ZeroShotWorldCoder; ..."` (from repo root).
 
 ## Abstract
 
@@ -39,10 +43,14 @@ Temporal/Visual Scorer (Fidelity + Flow Align) → Feedback Signal → Generator
 
 ## Structure
 
-- **Core**: `zero_shot_worldcoder.py`, `zero_shot_worldcoder_enhanced.py` - Main pipeline (V-JEPA + LLM + Physics Verifier)
-- **Dataset**: `dataset/blender_files/`, `dataset/physics/` - Test scenes and reference physics
-- **jepa/**: V-JEPA model and evals
-- **Docs**: `README_ZERO_SHOT.md`, `STREAMLIT_GUIDE.md`, `RESULTS_GUIDE.md`
+- **`src/`** – Core library: `zero_shot_worldcoder.py`, `zero_shot_worldcoder_enhanced.py` (V-JEPA + LLM + Physics Verifier)
+- **`scripts/`** – Evaluation & generation: `generate_cvpr_results.py`, `generate_cvpr_results_with_clip.py`, `analyze_results.py`, `batch_evaluation.py`
+- **`examples/`** – Example usage and reference Blender scripts
+- **`tests/`** – Test suite
+- **`app/`** – Streamlit UI (`streamlit_app.py`)
+- **`docs/`** – `README_ZERO_SHOT.md`, `STREAMLIT_GUIDE.md`, `RESULTS_GUIDE.md`
+- **`dataset/`** – `blender_files/`, `physics/` – Test scenes and reference physics
+- **`jepa/`** – V-JEPA model and evals
 
 ## Setup
 
@@ -53,8 +61,11 @@ pip install torch numpy opencv-python openai
 # Optional: set API key for LLM
 export OPENAI_API_KEY="your-key"
 
-# Test
-python test_zero_shot.py
+# Run tests (from project root)
+python tests/test_zero_shot.py
+
+# Run Streamlit app
+./run_streamlit.sh
 ```
 
 ## Citation

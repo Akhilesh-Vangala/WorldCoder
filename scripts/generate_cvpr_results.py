@@ -6,17 +6,21 @@ statistics, and ground truth comparisons.
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
 import json
 import os
-from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 import subprocess
 import tempfile
 import shutil
+
+from src.zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
 
 
 def convert_to_native_types(obj):
@@ -34,14 +38,12 @@ def convert_to_native_types(obj):
     else:
         return obj
 
-from zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
-
 # Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
-VJEPA_MODEL_PATH = '/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar'
+VJEPA_MODEL_PATH = PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'
 BLENDER_PATH = '/Applications/Blender.app/Contents/MacOS/Blender'
-DATASET_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/dataset')
-RESULTS_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/cvpr_results')
+DATASET_DIR = PROJECT_ROOT / 'dataset'
+RESULTS_DIR = PROJECT_ROOT / 'cvpr_results'
 RESULTS_DIR.mkdir(exist_ok=True)
 
 NUM_TEST_PAIRS = 5
@@ -402,7 +404,7 @@ def main():
     # Initialize pipeline
     print("[Initialization] Setting up pipeline...")
     coder = ZeroShotWorldCoder(
-        vjepa_model_path=VJEPA_MODEL_PATH,
+        vjepa_model_path=str(VJEPA_MODEL_PATH),
         llm_api_key=GEMINI_API_KEY,
         llm_provider='gemini',
         llm_model='gemini-2.0-flash-exp',

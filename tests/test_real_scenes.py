@@ -4,12 +4,13 @@ Uses your generated start/goal scene pairs
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import bpy
 import numpy as np
-from pathlib import Path
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 import tempfile
 import os
 
@@ -77,7 +78,7 @@ def test_with_real_scenes(pair_id: int = 1):
     print(f"Testing Zero-Shot WorldCoder with Real Scene Pair {pair_id}")
     print("="*70)
     
-    dataset_dir = Path("/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files")
+    dataset_dir = PROJECT_ROOT / "dataset" / "blender_files"
     start_blend = dataset_dir / f"start_{pair_id:04d}.blend"
     goal_blend = dataset_dir / f"goal_{pair_id:04d}.blend"
     
@@ -107,7 +108,7 @@ def test_with_real_scenes(pair_id: int = 1):
     print("  Connecting to Gemini...")
     
     coder = ZeroShotWorldCoder(
-        vjepa_model_path='/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar',
+        vjepa_model_path=str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'),
         llm_api_key=GEMINI_API_KEY,
         llm_provider='gemini',
         llm_model='gemini-2.0-flash-exp',
@@ -126,7 +127,7 @@ def test_with_real_scenes(pair_id: int = 1):
         code, scores = coder.transform(start_video, goal_video)
         
         # Save generated code
-        output_path = f'/Users/akhileshvangala/Desktop/CVPR/generated_code_pair_{pair_id}.py'
+        output_path = str(PROJECT_ROOT / 'examples' / f'generated_code_pair_{pair_id}.py')
         with open(output_path, 'w') as f:
             f.write(code)
         

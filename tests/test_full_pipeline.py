@@ -3,10 +3,12 @@ Test Full Pipeline: V-JEPA + Physics Verifier
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
-from zero_shot_worldcoder import VJEPAEncoder, PhysicsVerifier
+from src.zero_shot_worldcoder import VJEPAEncoder, PhysicsVerifier
 
 def test_vjepa():
     """Test V-JEPA model loading and encoding"""
@@ -14,7 +16,7 @@ def test_vjepa():
     print("Testing V-JEPA Model")
     print("="*70)
     
-    model_path = '/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar'
+    model_path = str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar')
     vjepa = VJEPAEncoder(model_path)
     
     # Test with video

@@ -3,8 +3,12 @@ Quick test of zero-shot WorldCoder pipeline
 Tests that all components can be imported and initialized
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import numpy as np
-from zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
+from src.zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
 
 def test_components():
     """Test each component individually"""

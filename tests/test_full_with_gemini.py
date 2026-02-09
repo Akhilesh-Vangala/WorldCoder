@@ -3,10 +3,12 @@ Test Full Pipeline with Gemini API Key
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 
 # Your Gemini API key
 GEMINI_API_KEY = "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0"
@@ -19,7 +21,7 @@ def test_full_pipeline():
     
     # Initialize with Gemini
     coder = ZeroShotWorldCoder(
-        vjepa_model_path='/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar',
+        vjepa_model_path=str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'),
         llm_api_key=GEMINI_API_KEY,
         llm_provider='gemini',
         llm_model='gemini-2.0-flash-exp',
@@ -39,7 +41,7 @@ def test_full_pipeline():
     code, scores = coder.transform(start_video, goal_video)
     
     # Save generated code
-    output_path = '/Users/akhileshvangala/Desktop/CVPR/generated_code_gemini.py'
+    output_path = str(PROJECT_ROOT / 'examples' / 'generated_code_gemini.py')
     with open(output_path, 'w') as f:
         f.write(code)
     

@@ -4,11 +4,12 @@ Tests all components with real Blender scenes and detailed diagnostics
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
-from pathlib import Path
-from zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
+from src.zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
 import subprocess
 import tempfile
 import os
@@ -119,7 +120,7 @@ def test_individual_components():
     # Test 1: V-JEPA
     print("\n[Test 1] V-JEPA Encoder...")
     try:
-        vjepa = VJEPAEncoder('/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar')
+        vjepa = VJEPAEncoder(str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'))
         test_video = np.random.rand(30, 224, 224, 3).astype(np.uint8)
         embedding = vjepa.encode(test_video)
         print(f"  ✅ Embedding shape: {embedding.shape}")
@@ -177,7 +178,7 @@ def test_full_pipeline(pair_id: int = 1):
     print(f"FULL PIPELINE TEST - Pair {pair_id}")
     print("="*70)
     
-    dataset_dir = Path("/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files")
+    dataset_dir = PROJECT_ROOT / "dataset" / "blender_files"
     start_blend = dataset_dir / f"start_{pair_id:04d}.blend"
     goal_blend = dataset_dir / f"goal_{pair_id:04d}.blend"
     
@@ -198,7 +199,7 @@ def test_full_pipeline(pair_id: int = 1):
     # Initialize pipeline
     print("\n[Step 2] Initializing pipeline...")
     coder = ZeroShotWorldCoder(
-        vjepa_model_path='/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar',
+        vjepa_model_path=str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'),
         llm_api_key=GEMINI_API_KEY,
         llm_provider='gemini',
         llm_model='gemini-2.0-flash-exp',
@@ -215,7 +216,7 @@ def test_full_pipeline(pair_id: int = 1):
         code, scores = coder.transform(start_video, goal_video)
         
         # Save code
-        output_path = f'/Users/akhileshvangala/Desktop/CVPR/generated_code_pair_{pair_id}_comprehensive.py'
+        output_path = str(PROJECT_ROOT / 'examples' / f'generated_code_pair_{pair_id}_comprehensive.py')
         with open(output_path, 'w') as f:
             f.write(code)
         

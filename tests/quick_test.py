@@ -3,8 +3,12 @@ Quick test to check if the code is ready for use
 Tests without requiring video rendering
 """
 
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import numpy as np
-from zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
+from src.zero_shot_worldcoder import ZeroShotWorldCoder, VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier
 
 def test_readiness():
     """Test if all components work and code quality"""

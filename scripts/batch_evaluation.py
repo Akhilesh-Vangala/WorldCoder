@@ -5,23 +5,26 @@ Runs evaluations with different configurations for ablation studies.
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / 'scripts'))
 
 import json
 import os
-from pathlib import Path
 from datetime import datetime
 from typing import Dict, List
 import subprocess
 
 from generate_cvpr_results import evaluate_pair, render_blend_file, load_ground_truth_physics
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 
 # Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
-VJEPA_MODEL_PATH = '/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar'
-DATASET_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/dataset')
-RESULTS_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/cvpr_results')
+VJEPA_MODEL_PATH = PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'
+DATASET_DIR = PROJECT_ROOT / 'dataset'
+RESULTS_DIR = PROJECT_ROOT / 'cvpr_results'
 ABLATION_DIR = RESULTS_DIR / 'ablation_studies'
 ABLATION_DIR.mkdir(parents=True, exist_ok=True)
 

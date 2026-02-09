@@ -4,26 +4,35 @@ Uses convergence-based iteration (stops when errors are low)
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / 'scripts'))
 
 import numpy as np
 import json
 import os
-from pathlib import Path
 from datetime import datetime
 from typing import Dict, List
 import subprocess
 import tempfile
 import shutil
 
-from zero_shot_worldcoder_enhanced import EnhancedZeroShotWorldCoder
-from generate_cvpr_results import render_blend_file, load_ground_truth_physics, extract_physics_params_from_code, compute_parameter_accuracy, convert_to_native_types
+from src.zero_shot_worldcoder_enhanced import EnhancedZeroShotWorldCoder
+import generate_cvpr_results as gen_script
+
+render_blend_file = gen_script.render_blend_file
+load_ground_truth_physics = gen_script.load_ground_truth_physics
+extract_physics_params_from_code = gen_script.extract_physics_params_from_code
+compute_parameter_accuracy = gen_script.compute_parameter_accuracy
+convert_to_native_types = gen_script.convert_to_native_types
 
 # Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
-VJEPA_MODEL_PATH = '/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar'
-DATASET_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/dataset')
-RESULTS_DIR = Path('/Users/akhileshvangala/Desktop/CVPR/cvpr_results')
+VJEPA_MODEL_PATH = PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar'
+DATASET_DIR = PROJECT_ROOT / 'dataset'
+RESULTS_DIR = PROJECT_ROOT / 'cvpr_results'
 CLIP_RESULTS_DIR = RESULTS_DIR / 'clip_enhanced_results'
 CLIP_RESULTS_DIR.mkdir(exist_ok=True)
 

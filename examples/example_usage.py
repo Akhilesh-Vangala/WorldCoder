@@ -4,9 +4,12 @@ Example usage of Zero-Shot WorldCoder
 Shows how to use the pipeline with your generated Blender scenes
 """
 
-import numpy as np
+import sys
 from pathlib import Path
-from zero_shot_worldcoder import ZeroShotWorldCoder
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import numpy as np
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 import bpy
 import cv2
 
@@ -36,7 +39,8 @@ def render_blend_to_video(blend_file: str, output_path: str, frames: int = 300) 
 
 def example_use_existing_blend_files():
     """Example: Use your generated .blend files"""
-    dataset_dir = Path("/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files")
+    project_root = Path(__file__).resolve().parent.parent
+    dataset_dir = project_root / "dataset" / "blender_files"
     
     # Load start and goal scenes
     start_blend = dataset_dir / "start_0001.blend"

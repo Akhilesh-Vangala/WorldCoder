@@ -4,12 +4,7 @@ Zero-Shot WorldCoder: V-JEPA + CLIP + LLM + Physics Verifier (Enhanced)
 Enhanced version with CLIP visual embeddings to improve PFF scores
 """
 
-# Copy all imports from original
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from zero_shot_worldcoder import (
+from .zero_shot_worldcoder import (
     VJEPAEncoder, LLMCodeGenerator, PhysicsVerifier, ZeroShotWorldCoder,
     TORCH_AVAILABLE, CV2_AVAILABLE, GEMINI_AVAILABLE, OPENAI_AVAILABLE
 )

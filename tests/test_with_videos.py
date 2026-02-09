@@ -8,11 +8,11 @@ import sys
 import os
 from pathlib import Path
 
-# Add current directory to path for imports
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 import numpy as np
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 import tempfile
 
 def render_blend_to_video_frames(blend_file: str, num_frames: int = 30, 
@@ -76,7 +76,7 @@ def render_blend_to_video_frames(blend_file: str, num_frames: int = 30,
 
 def test_with_blender_scenes(pair_id: int = 1):
     """Test pipeline with actual Blender scene pair"""
-    dataset_dir = Path("/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files")
+    dataset_dir = PROJECT_ROOT / "dataset" / "blender_files"
     
     start_blend = dataset_dir / f"start_{pair_id:04d}.blend"
     goal_blend = dataset_dir / f"goal_{pair_id:04d}.blend"
@@ -123,7 +123,7 @@ def test_with_blender_scenes(pair_id: int = 1):
             print(f"  {key}: {value:.3f}")
         
         # Save generated code
-        output_path = Path(f"/Users/akhileshvangala/Desktop/CVPR/generated_code_pair_{pair_id}.py")
+        output_path = PROJECT_ROOT / "examples" / f"generated_code_pair_{pair_id}.py"
         with open(output_path, 'w') as f:
             f.write(code)
         print(f"\n💾 Generated code saved to: {output_path}")

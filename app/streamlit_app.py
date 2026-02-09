@@ -19,10 +19,10 @@ import os
 import tempfile
 import subprocess
 
-# Add project to path
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
-from zero_shot_worldcoder import ZeroShotWorldCoder
+from src.zero_shot_worldcoder import ZeroShotWorldCoder
 
 try:
     import cv2
@@ -61,7 +61,7 @@ gemini_key = st.sidebar.text_input(
 # Model paths
 vjepa_path = st.sidebar.text_input(
     "V-JEPA Model Path",
-    value="/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar"
+    value=str(PROJECT_ROOT / "models" / "vjepa" / "vitl16.pth.tar")
 )
 
 max_iterations = st.sidebar.slider("Max Iterations", 1, 5, 3)
@@ -234,7 +234,7 @@ if mode == "Upload Videos":
 elif mode == "Use Blender Files":
     st.header("🎨 Select Blender Files")
     
-    dataset_dir = Path("/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files")
+    dataset_dir = PROJECT_ROOT / "dataset" / "blender_files"
     
     if dataset_dir.exists():
         blend_files = sorted(list(dataset_dir.glob("*.blend")))

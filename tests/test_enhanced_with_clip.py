@@ -3,15 +3,18 @@ Test Enhanced WorldCoder with CLIP visual features
 """
 
 import sys
-sys.path.insert(0, '/Users/akhileshvangala/Desktop/CVPR')
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / 'scripts'))
 
 import numpy as np
-from zero_shot_worldcoder_enhanced import EnhancedZeroShotWorldCoder
+from src.zero_shot_worldcoder_enhanced import EnhancedZeroShotWorldCoder
 import os
 
 # Test with one pair
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0")
-VJEPA_MODEL_PATH = '/Users/akhileshvangala/Desktop/CVPR/models/vjepa/vitl16.pth.tar'
+VJEPA_MODEL_PATH = str(PROJECT_ROOT / 'models' / 'vjepa' / 'vitl16.pth.tar')
 
 def test_enhanced_pipeline():
     """Test enhanced pipeline with CLIP"""
@@ -31,10 +34,10 @@ def test_enhanced_pipeline():
     
     # Load test videos (use existing blend files)
     from generate_cvpr_results import render_blend_file
-    dataset_dir = '/Users/akhileshvangala/Desktop/CVPR/dataset/blender_files'
-    
-    start_blend = f"{dataset_dir}/start_0001.blend"
-    goal_blend = f"{dataset_dir}/goal_0001.blend"
+    dataset_dir = PROJECT_ROOT / 'dataset' / 'blender_files'
+
+    start_blend = str(dataset_dir / "start_0001.blend")
+    goal_blend = str(dataset_dir / "goal_0001.blend")
     
     print("\n[Loading videos]...")
     start_video = render_blend_file(start_blend, num_frames=30)
