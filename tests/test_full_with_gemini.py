@@ -11,7 +11,8 @@ import numpy as np
 from src.zero_shot_worldcoder import ZeroShotWorldCoder
 
 # Your Gemini API key
-GEMINI_API_KEY = "AIzaSyBI52gm0JaJbMbM0xeqO9EuN86p88gIHj0"
+
+GEMINI_API_KEY = #KEY
 
 def test_full_pipeline():
     """Test complete pipeline with V-JEPA + Gemini + Physics Verifier"""
